@@ -27,25 +27,24 @@ Route::get('/myblog', function () {
 
 
 Route::get('/posts', function () {
-   
-    $files =  File::files(resource_path("posts"));
-    $posts = [];
-    foreach($files as $file){
+
+        return view('posts',[
+            'posts' => Post::all()
+        ]);
+    /*
+    ES LO MATEIX PERO AMB COLLECTOR ES MES EFICIENT I NET (EMIGRAT A LA CLASE Post)
+    $posts = array_map(function($file){
         $document = YamlFrontMatter::parseFile($file);
-        $posts[] = new Post(
+
+        return new Post(
             $document->title,
             $document->excerpt,
             $document->date,
             $document->body(),
-            $document->slug //slug es el titol del arxiu, diferent de title
+            $document->slug
         );
-    }
-   
-
-    
-    return view('posts',[
-        'posts' => $posts
-    ]);
+    }, $files);
+    */
 });
 
 

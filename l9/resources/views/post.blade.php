@@ -9,10 +9,14 @@
 </head>
 <link rel="stylesheet" href="/css/posts.css">
 
-<body>1
+<body>
 
     <article>
-        <?= $post; //CON LA CLASE Post EN l9/app/Models/Post y el for en el archivo posts.php ya no nos sirve?>
+        <h1><?= $post->title; ?></h1>
+
+        <div>
+        <?= $post->body; ?>
+        </div>
     </article>
     
     <a href="/posts">Go back</a>
