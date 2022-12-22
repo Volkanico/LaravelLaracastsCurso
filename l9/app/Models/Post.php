@@ -7,6 +7,19 @@ use Illuminate\Support\Facades\File;
 
 class Post {
 
+    public $title;
+    public $exercpt;
+    public $date;
+    public $body;
+
+    public function __construct($title,$exercpt,$date,$body){
+        $this->title = $title;
+        $this->exercpt = $exercpt;
+        $this->date = $date;
+        $this->body = $body;
+    }
+    
+
     public static function all(){
 
         $files =  File::files(resource_path("posts/"));
