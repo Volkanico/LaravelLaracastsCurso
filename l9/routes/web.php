@@ -56,8 +56,4 @@ Route::get('posts/{post}', function ($slug) {
     
 })->where('post','[A-z_\-]+'); //REGEX: Permet 1 o mes lletres de A a z (min i maj) i els guions '-'
 
-//NOS HEMOS QUEDADO EN EL EPISODIO 8/11
-
-
-
 //PER ELIMINAR LA CACHE DE LES VISTES CARREGADES cache()->forget('posts.all');
