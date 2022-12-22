@@ -28,23 +28,24 @@ Route::get('/myblog', function () {
 
 Route::get('/posts', function () {
    
-    $files =  File::files(resource_path("posts/"));
+    $files =  File::files(resource_path("posts"));
     $posts = [];
     foreach($files as $file){
         $document = YamlFrontMatter::parseFile($file);
         $posts[] = new Post(
             $document->title,
-            $document->exercpt,
+            $document->excerpt,
             $document->date,
-            $document->body
+            $document->body(),
+            $document->slug //slug es el titol del arxiu, diferent de title
         );
     }
    
 
-    return view('posts', ['post' => $post]);
-    //return view('posts',[
-    //    'posts' => Post::all()
-    //]);
+    
+    return view('posts',[
+        'posts' => $posts
+    ]);
 });
 
 

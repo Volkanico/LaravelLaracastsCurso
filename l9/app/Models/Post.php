@@ -8,15 +8,17 @@ use Illuminate\Support\Facades\File;
 class Post {
 
     public $title;
-    public $exercpt;
+    public $excerpt;
     public $date;
     public $body;
+    public $slug;
 
-    public function __construct($title,$exercpt,$date,$body){
+    public function __construct($title,$excerpt,$date,$body,$slug){
         $this->title = $title;
-        $this->exercpt = $exercpt;
+        $this->excerpt = $excerpt;
         $this->date = $date;
         $this->body = $body;
+        $this->slug = $slug;
     }
     
 
