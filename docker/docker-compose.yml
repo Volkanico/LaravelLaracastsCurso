@@ -1,0 +1,20 @@
+version: '3'
+services:
+  resizer:
+    image: docker.io/bitnami/laravel:9
+    container_name: laravel
+    ports:
+      - 8000:8000
+    volumes:
+      - ./laravel:/app
+  mysql:
+    image: docker.io/bitnami/mysql
+    container_name: mysql
+    environment:
+      # docker-compose up -d
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=Admin
+      - MYSQL_DATABASE=laravel
+    ports:
+      - 3311:3306
