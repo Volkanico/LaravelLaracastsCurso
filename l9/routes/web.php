@@ -31,29 +31,16 @@ Route::get('/posts', function () {
         return view('posts',[
             'posts' => Post::all()
         ]);
-    /*
-    ES LO MATEIX PERO AMB COLLECTOR ES MES EFICIENT I NET (EMIGRAT A LA CLASE Post)
-    $posts = array_map(function($file){
-        $document = YamlFrontMatter::parseFile($file);
-
-        return new Post(
-            $document->title,
-            $document->excerpt,
-            $document->date,
-            $document->body(),
-            $document->slug
-        );
-    }, $files);
-    */
+    
 });
 
 
-Route::get('posts/{post}', function ($slug) {
-    //Find a post by its slug and pass it to a view called "post"
+Route::get('/posts/{post}', function ($slug) {
+    
     return view('post', [
-        'post' => Post::find($slug)
+        'post' =>  Post::findOrFail($slug)
     ]);
     
-})->where('post','[A-z_\-]+'); //REGEX: Permet 1 o mes lletres de A a z (min i maj) i els guions '-'
+}); //REGEX: Permet 1 o mes lletres de A a z (min i maj) i els guions '-'
 
 //PER ELIMINAR LA CACHE DE LES VISTES CARREGADES cache()->forget('posts.all');
