@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Validation\Rule as ValidationRule;
 
 class PostController extends Controller
 {
@@ -37,5 +41,24 @@ class PostController extends Controller
         ]);
     }
 
+    public function create(){
+        
+        return view('posts.create');
+    }
+    public function store(){
+        
+        $attributes = request()->validate([
+            'title' => 'required',
+            'slug' => ['required',ValidationRule::unique('posts','slug')],
+            'excerpt' => 'required',
+            'body' => 'required',
+            'category_id' => ['required',ValidationRule::exists('categories', 'id')],
+        ]);
+
+        $attributes['user_id'] = auth()->id();
+
+        Post::create($attributes);
+        return redirect('/');
+    }
     
 }

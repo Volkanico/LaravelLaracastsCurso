@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model {
     use HasFactory;
 
-    
-    protected $guarded = ['id']; //GUARDA TOTS ELS ATRIBUTS EXCEPTE ELS QUE LI PASSAM
-    // protected $fillable = ['title','excerpt','body','id']; GUARDA TOTS ELS ATRIBUTS QUE LI PASSAM
     protected $with = ['category', 'author'];
 
     public function scopeFilter($query, array $filters){

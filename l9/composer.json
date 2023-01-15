@@ -11,6 +11,7 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "dev-develop",
         "laravel/tinker": "dev-develop",
+        "mailchimp/marketing": "^3.0",
         "spatie/yaml-front-matter": "^2.0"
     },
     "require-dev": {
@@ -35,6 +36,7 @@
         }
     },
     "scripts": {
+        
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
