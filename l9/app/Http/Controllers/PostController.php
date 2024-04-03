@@ -7,13 +7,13 @@ use Illuminate\Validation\Rule as ValidationRule;
 class PostController extends Controller
 {
     public function index(){
-       
+       //dd("HOLA");
         return view('posts.index',[
             'posts' => Post::latest()->filter(
                 request(['search', 'category', 'author']))->paginate(6)->withQueryString()
-        ]); 
+        ]);
         /*return Post::latest()->filter(
-        request(['search', 'category', 'author']))->paginate(); 
+        request(['search', 'category', 'author']))->paginate();
         MOSTRAMO UN JSON ORDENAT, AMB PAGINATE PODEM POSAR UN NOMBRE DE PAGINES I ES REPARETIXEN ELS POSTS*/
         /*return Post::latest()->filter(
             request(['search', 'category', 'author']))->get();
@@ -21,7 +21,7 @@ class PostController extends Controller
         /*return view('posts.index',[
             'posts' => Post::latest()->filter(
                 request(['search', 'category', 'author']))->get()
-        ]); 
+        ]);
         MOSTRAM TOTA LA LLISTA EN VIEW INDEX */
     }
 

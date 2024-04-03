@@ -18,18 +18,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /*User::truncate();
-        Category::truncate();
-        Post::truncate();
 
-        $user = User::factory()->create();*/
-        $user = User::factory()->create([
-            'name' => 'John Doe'
+        User::factory()->create([
+            'username' => 'volkanico',
+            'name' => 'volkanico',
+            'email' => 'volkan@g.com',
+            'password' => 'volkanico',
+            'is_admin' => false
+
         ]);
-        Post::factory(5)->create([
+
+        User::factory()->create([
+            'username' => 'volkanic',
+            'name' => 'volkanic',
+            'email' => 'v@g.com',
+            'password' => 'volkanico',
+            'is_admin' => true
+
+        ]);
+       /* Post::factory(5)->create([
             'user_id'=>$user->id
-        ]);
-/*
+        ]);*/
+
         $personal = Category::create([
             'name' => 'Personal',
             'slug' => 'personal',
@@ -44,7 +54,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Work',
             'slug' => 'work',
         ]);
-
+/*
         Post::create([
             'user_id' => $user->id,
             'category_id' => $family->id,

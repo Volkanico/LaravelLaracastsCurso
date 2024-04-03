@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -26,6 +27,7 @@ Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
 // Admin Section
-Route::middleware('can:admin')->group(function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/posts', AdminPostController::class)->except('show');
 });
+
